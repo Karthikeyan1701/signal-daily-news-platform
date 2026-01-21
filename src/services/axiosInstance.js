@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: "https://newsapi.org/v2",
+    baseURL: import.meta.env.VITE_NEWS_BASE_URL,
     timeout: 10000,
 });
+
+console.log(import.meta.env.VITE_NEWS_BASE_URL);
 
 export default axiosInstance;
