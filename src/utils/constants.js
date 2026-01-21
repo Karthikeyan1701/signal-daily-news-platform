@@ -1,2 +1,2 @@
 export const DEFAULT_COUNTRY = "in";
-export const PAGFE_SIZE = 10;
+export const PAGE_SIZE = 10;

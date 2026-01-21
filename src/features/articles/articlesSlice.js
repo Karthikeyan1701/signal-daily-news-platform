@@ -22,11 +22,17 @@ const articlesSlice = createSlice({
         status: "idle",
         error: null,
         country: DEFAULT_COUNTRY,
+        page: 1,
+        totalResults: 0,
     },
     reducers: {
         setCountry: (state, action) => {
             state.country = action.payload;
-        }
+            state.page = 1;
+        },
+        setPage: (state, action) => {
+            state.page = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -37,6 +43,7 @@ const articlesSlice = createSlice({
             .addCase(getTopHeadlines.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.articles = action.payload.articles;
+                state.totalResults = action.payload.totalResults;
             })
             .addCase(getTopHeadlines.rejected, (state, action) => {
                 state.status = "failed";
@@ -45,5 +52,5 @@ const articlesSlice = createSlice({
     },
 });
 
-export const { setCountry } = articlesSlice.actions;
+export const { setCountry, setPage } = articlesSlice.actions;
 export default articlesSlice.reducer;
